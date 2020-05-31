@@ -1,0 +1,115 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Action RPG Resources/HitBoxes/HurtBox.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Action RPG Resources/HitBoxes/HitBox.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Action RPG Resources/Stats.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Utilities/PersonalSpace.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Action RPG Resources/Shadows/SmallShadow.png" type="Texture" id=5]
+[ext_resource path="res://Enemies/DungeonMoth/DungeonMoth.png" type="Texture" id=6]
+[ext_resource path="res://Utilities/PlayerDetectionZone.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemies/DungeonMoth/DungeonMoth.gd" type="Script" id=8]
+
+[sub_resource type="AtlasTexture" id=1]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 16, 30 )
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 30, 16, 30 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 60, 16, 30 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 90, 16, 30 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 6 )
+region = Rect2( 0, 120, 16, 30 )
+
+[sub_resource type="SpriteFrames" id=6]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"loop": true,
+"name": "Fly",
+"speed": 15.0
+} ]
+
+[sub_resource type="CircleShape2D" id=7]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 5.22501, 3.225 )
+
+[sub_resource type="CircleShape2D" id=9]
+radius = 34.7742
+
+[sub_resource type="CircleShape2D" id=10]
+
+[node name="DungeonMoth" type="KinematicBody2D"]
+collision_layer = 16
+script = ExtResource( 8 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -12 )
+frames = SubResource( 6 )
+animation = "Fly"
+frame = 4
+playing = true
+
+[node name="Sprite2" type="Sprite" parent="."]
+texture = ExtResource( 5 )
+
+[node name="HurtBox" parent="." instance=ExtResource( 1 )]
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+modulate = Color( 1, 1, 1, 0.32549 )
+position = Vector2( 0.3125, -13 )
+shape = SubResource( 7 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 8 )
+
+[node name="Stats" parent="." instance=ExtResource( 3 )]
+maxHealth = 2
+
+[node name="PlayerChaseZone" parent="." instance=ExtResource( 7 )]
+gravity_vec = Vector2( 0, 0 )
+collision_layer = 0
+collision_mask = 2
+
+[node name="Zone" parent="PlayerChaseZone" index="0"]
+modulate = Color( 1, 1, 1, 0.235294 )
+
+[node name="PersonalSpace" parent="." instance=ExtResource( 4 )]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="PersonalSpace" index="0"]
+modulate = Color( 1, 1, 1, 0.235294 )
+position = Vector2( 0.5, -10.5 )
+shape = SubResource( 9 )
+
+[node name="Line2D" type="Line2D" parent="."]
+width = 1.0
+
+[node name="HitBox" parent="." instance=ExtResource( 2 )]
+collision_layer = 64
+collision_mask = 4
+
+[node name="CollisionShape2D" parent="HitBox" index="0"]
+position = Vector2( 0.4375, -12.9375 )
+shape = SubResource( 10 )
+[connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
+[connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
+[connection signal="player_lost" from="PlayerChaseZone" to="." method="_on_PlayerChaseZone_player_lost"]
+[connection signal="player_seen" from="PlayerChaseZone" to="." method="_on_PlayerChaseZone_player_seen"]
+
+[editable path="HurtBox"]
+
+[editable path="PlayerChaseZone"]
+
+[editable path="PersonalSpace"]
+
+[editable path="HitBox"]

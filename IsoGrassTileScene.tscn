@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Terrain/WorldTiles.tres" type="TileSet" id=1]
+
+[node name="TileMap2" type="TileMap"]
+z_as_relative = false
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 64, 24 )
+cell_quadrant_size = 1
+cell_custom_transform = Transform2D( 0, 0, 0, 0, 0, 0 )
+cell_half_offset = 0
+cell_tile_origin = 1
+cell_y_sort = true
+collision_mask = 0
+format = 1
+tile_data = PoolIntArray( -327674, 2, 65536, 131078, 0, 0, 131079, 0, 0, 196615, 0, 0, 262152, 0, 0, 327687, 0, 0, 393222, 0, 0, 393224, 0, 0, 458759, 0, 0, 983038, 2, 65536 )

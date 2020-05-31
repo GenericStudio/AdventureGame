@@ -1,0 +1,4 @@
+[gd_scene format=2]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D"]
+[connection signal="finished" from="." to="." method="_on_AudioStreamPlayer2D_finished"]
