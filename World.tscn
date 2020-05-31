@@ -132,16 +132,15 @@ points = PoolVector2Array( 0, 16, 32, 16, 32, 32, 0, 32 )
 1/z_index = 0
 
 [sub_resource type="NavigationPolygon" id=7]
-vertices = PoolVector2Array( 576, -512, 312, -512, 432, -680, 728, -680, 720, -576, 704, -480 )
-polygons = [ PoolIntArray( 0, 1, 2, 3, 4 ), PoolIntArray( 0, 4, 5 ) ]
-outlines = [ PoolVector2Array( 432, -680, 728, -680, 720, -576, 704, -480, 576, -512, 312, -512 ) ]
+vertices = PoolVector2Array( 0, -976, 1048, -992, 1112, -48, -144, -24 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+outlines = [ PoolVector2Array( 0, -976, 1048, -992, 1112, -48, -144, -24 ) ]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
 [node name="World" type="Node2D"]
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
-position = Vector2( -320, 704 )
 
 [node name="Ground" type="TileMap" parent="Navigation2D"]
 tile_set = SubResource( 2 )
@@ -164,7 +163,7 @@ navpoly = SubResource( 7 )
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-position = Vector2( 168, 144 )
+position = Vector2( 408, -552 )
 NavigationTiles = NodePath("../../Navigation2D")
 
 [node name="AnimationTree" parent="YSort/Player" index="3"]
@@ -174,13 +173,13 @@ parameters/playback = SubResource( 1 )
 remote_path = NodePath("../../../Camera2D")
 
 [node name="Camera2D" parent="." instance=ExtResource( 7 )]
-position = Vector2( 168, 144 )
+position = Vector2( 408, -552 )
 
 [node name="TopLeft" parent="Camera2D/Limits" index="0"]
-position = Vector2( -400, -408 )
+position = Vector2( -198, -1006 )
 
 [node name="BottomRight" parent="Camera2D/Limits" index="1"]
-position = Vector2( 936, 624 )
+position = Vector2( 1138, 26 )
 
 [editable path="YSort/Player"]
 
