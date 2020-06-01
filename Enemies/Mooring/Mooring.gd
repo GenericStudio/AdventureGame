@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends Node2D
 
 var DeathInstance = preload("DeathInstance.tscn")
 var HitInstance = preload("HitInstance.tscn");
