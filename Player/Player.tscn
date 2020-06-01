@@ -800,7 +800,7 @@ stream = ExtResource( 7 )
 stream = ExtResource( 8 )
 
 [node name="Line2D" type="Line2D" parent="."]
-width = 1.0
+width = 4.0
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
 [connection signal="no_health" from="Health" to="." method="_on_Health_no_health"]
 

@@ -73,13 +73,14 @@ func RollEnd():
 func MoveState(delta):
 	
 	var input_vector = Vector2.ZERO;
-	if global_position.distance_to(destination) > 1:
+	if global_position.distance_to(destination) > 5:
 		var pathToDestination = _nav.get_simple_path(global_position, destination);
 		if(pathToDestination.size()>0):
 			input_vector = (pathToDestination[1] - global_position).normalized();
-			Line.points = [];
+			var points = []
 			for i in range(pathToDestination.size()):
-				Line.set_point_position(i, pathToDestination[i] - global_position);
+				points.push_back(pathToDestination[i]-global_position)
+			Line.points= points;
 
 #	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left");
 #	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up");

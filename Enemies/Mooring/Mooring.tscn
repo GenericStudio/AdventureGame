@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Action RPG Resources/Stats.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Enemies/Mooring/WoodPole.png" type="Texture" id=2]
@@ -9,9 +9,6 @@
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 11.3376
 height = 18.7499
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 11.3751, 10 )
 
 [node name="Mooring" type="StaticBody2D"]
 collision_mask = 0
@@ -32,7 +29,10 @@ position = Vector2( 0.25, 13.35 )
 shape = SubResource( 1 )
 
 [node name="Solid" parent="." instance=ExtResource( 5 )]
-shape = SubResource( 2 )
+
+[node name="CollisionPolygon2D" parent="Solid" index="0"]
+position = Vector2( -111.563, -64.8126 )
+polygon = PoolVector2Array( -7.937, -18.1374, 7.813, 11.3626, -46.687, 2.86265, -46.687, -17.6374 )
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_HurtBox_body_entered"]
