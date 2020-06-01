@@ -15,6 +15,8 @@ var velocity = Vector2.ZERO;
 var state = MOVE;
 var rollVector = Vector2.DOWN;
 
+var MOVE_TYPE = DIRECT;
+
 onready var swordHitBox = $SwordRoot/HitBox
 
 onready var effectsPlayer = $SpriteEffectAnimations
@@ -27,6 +29,8 @@ enum {
 	MOVE,
 	ROLL,
 	ATTACK,
+	DIRECT,
+	NAVIGATION
 }
 
 func _ready():
@@ -49,6 +53,8 @@ func _input(event):
 		destination = get_global_mouse_position()
 		print(destination);
 		print(global_position)
+		if MOVE_TYPE == DIRECT:
+			MOVE_TYPE = NAVIGATION;
 			
 func Move(movementVector):
 	velocity = move_and_slide(velocity);
@@ -71,20 +77,26 @@ func RollEnd():
 
 
 func MoveState(delta):
-	
 	var input_vector = Vector2.ZERO;
-	if global_position.distance_to(destination) > 5:
-		var pathToDestination = _nav.get_simple_path(global_position, destination);
-		if(pathToDestination.size()>0):
-			input_vector = (pathToDestination[1] - global_position).normalized();
-			var points = []
-			for i in range(pathToDestination.size()):
-				points.push_back(pathToDestination[i]-global_position)
-			Line.points= points;
 
-#	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left");
-#	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up");
-#	input_vector = input_vector.normalized();
+	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left");
+	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up");
+	input_vector = input_vector.normalized();
+	
+	if input_vector != Vector2.ZERO:
+		if(MOVE_TYPE==NAVIGATION):
+			MOVE_TYPE=DIRECT;
+			Line.points= [];
+		
+	if MOVE_TYPE == NAVIGATION:
+		if global_position.distance_to(destination) > 5:
+			var pathToDestination = _nav.get_simple_path(global_position, destination);
+			if(pathToDestination.size()>0):
+				input_vector = (pathToDestination[1] - global_position).normalized();
+				var points = []
+				for i in range(pathToDestination.size()):
+					points.push_back(pathToDestination[i]-global_position)
+				Line.points= points;
 	
 	if(input_vector != Vector2.ZERO):
 		rollVector = input_vector;
