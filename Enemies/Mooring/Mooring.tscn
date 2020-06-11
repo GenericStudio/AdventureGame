@@ -25,6 +25,7 @@ position = Vector2( 0.25, 13.35 )
 shape = SubResource( 1 )
 
 [node name="Solid" parent="." instance=ExtResource( 5 )]
+collision_layer = 1
 
 [node name="CollisionPolygon2D" parent="Solid" index="0"]
 polygon = PoolVector2Array( -11, 10, 12, 10, 12, 30, -11, 30 )

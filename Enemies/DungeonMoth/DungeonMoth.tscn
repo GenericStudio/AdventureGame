@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Action RPG Resources/HitBoxes/HurtBox.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Action RPG Resources/HitBoxes/HitBox.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Enemies/DungeonMoth/DungeonMoth.png" type="Texture" id=6]
 [ext_resource path="res://Utilities/PlayerDetectionZone.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Enemies/DungeonMoth/DungeonMoth.gd" type="Script" id=8]
+[ext_resource path="res://Graph/Graph.tscn" type="PackedScene" id=9]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 6 )
@@ -55,7 +56,7 @@ script = ExtResource( 8 )
 position = Vector2( 0, -12 )
 frames = SubResource( 6 )
 animation = "Fly"
-frame = 4
+frame = 2
 playing = true
 
 [node name="Sprite2" type="Sprite" parent="."]
@@ -101,6 +102,10 @@ collision_mask = 4
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2( 0.4375, -12.9375 )
 shape = SubResource( 10 )
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Graph" parent="Node" instance=ExtResource( 9 )]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_Stats_no_health"]
 [connection signal="player_lost" from="PlayerChaseZone" to="." method="_on_PlayerChaseZone_player_lost"]

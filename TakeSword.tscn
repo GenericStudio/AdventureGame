@@ -1,0 +1,265 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Camera2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Terrain/OldMan.png" type="Texture" id=2]
+[ext_resource path="res://Terrain/Sword.png" type="Texture" id=3]
+[ext_resource path="res://Terrain/SwordMan.png" type="Texture" id=4]
+[ext_resource path="res://Terrain/Arms.png" type="Texture" id=5]
+[ext_resource path="res://TakeSword.gd" type="Script" id=6]
+[ext_resource path="res://Terrain/GrabCircle.png" type="Texture" id=7]
+[ext_resource path="res://Terrain/SwordManWithSword.png" type="Texture" id=8]
+
+[sub_resource type="AtlasTexture" id=2]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 49, 55 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 7 )
+region = Rect2( 49, 0, 49, 55 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 7 )
+region = Rect2( 98, 0, 49, 55 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 7 )
+region = Rect2( 147, 0, 49, 55 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 7 )
+region = Rect2( 196, 0, 49, 55 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 7 )
+region = Rect2( 245, 0, 49, 55 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 7 )
+region = Rect2( 294, 0, 49, 55 )
+
+[sub_resource type="SpriteFrames" id=9]
+animations = [ {
+"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=10]
+resource_name = "Grabbed"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("GrabbedSword:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 0.189464, 0.0272047 ),
+"update": 0,
+"values": [ Vector2( 87, -30 ), Vector2( -32, -24 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("SwordMan:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("OldMan/Sword:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("GrabbedSword:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "loadScene"
+} ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "Throw"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("OldMan:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 22 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("OldMan/Arms:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.5, 1.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -111, -46 ), Vector2( -110, -62 ), Vector2( -110, -40 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("OldMan/Sword:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 1.6, 3 ),
+"transitions": PoolRealArray( 1, 1, 1, 2.82843 ),
+"update": 0,
+"values": [ Vector2( -120, 65 ), Vector2( -120, 65 ), Vector2( 0, -101 ), Vector2( 123, 91 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("GrabbedSword:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("OldMan/Sword:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("SwordMan:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Camera2D" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 0 )
+
+[node name="TopLeft" parent="Camera2D/Limits" index="0"]
+position = Vector2( -239, -158 )
+
+[node name="BottomRight" parent="Camera2D/Limits" index="1"]
+position = Vector2( 240, 160 )
+
+[node name="OldMan" type="Sprite" parent="."]
+position = Vector2( 1, 22 )
+texture = ExtResource( 2 )
+
+[node name="Sword" type="Sprite" parent="OldMan"]
+position = Vector2( -120, 65 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="TapSwordText" type="RichTextLabel" parent="OldMan/Sword"]
+margin_left = -57.0
+margin_top = -54.0
+margin_right = 57.0
+margin_bottom = 47.0
+meta_underlined = false
+text = "
+
+
+
+
+			TAP"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SwordGrabSprite" type="AnimatedSprite" parent="OldMan/Sword"]
+frames = SubResource( 9 )
+
+[node name="Arms" type="Sprite" parent="OldMan"]
+position = Vector2( -111, -46 )
+z_index = -2
+texture = ExtResource( 5 )
+
+[node name="SwordMan" type="Sprite" parent="."]
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Grabbed = SubResource( 10 )
+anims/Throw = SubResource( 1 )
+
+[node name="TakeSwordText" type="RichTextLabel" parent="."]
+margin_left = -96.0
+margin_top = -27.0
+margin_right = 112.0
+margin_bottom = 49.0
+meta_underlined = false
+text = "Swordman, Take Sword!
+
+
+                     -Tap-"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GrabbedSword" type="Sprite" parent="."]
+visible = false
+position = Vector2( 87, -30 )
+texture = ExtResource( 8 )
+[connection signal="gui_input" from="OldMan/Sword/TapSwordText" to="." method="_on_RichTextLabel2_gui_input"]
+[connection signal="gui_input" from="TakeSwordText" to="." method="_on_RichTextLabel_gui_input"]
+
+[editable path="Camera2D"]

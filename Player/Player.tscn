@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Action RPG Resources/HitBoxes/HitBox.tscn" type="PackedScene" id=2]
@@ -9,13 +9,14 @@
 [ext_resource path="res://Action RPG Resources/Music and Sounds/Hurt.wav" type="AudioStream" id=7]
 [ext_resource path="res://Action RPG Resources/Music and Sounds/Swipe.wav" type="AudioStream" id=8]
 [ext_resource path="res://Player/PlayerHealth.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Graph/Graph.tscn" type="PackedScene" id=10]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 6 )
 shader_param/active = false
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 4.79153
+radius = 1.0
 
 [sub_resource type="Animation" id=3]
 resource_name = "AttackDown"
@@ -799,8 +800,16 @@ stream = ExtResource( 7 )
 [node name="SwordSlashSound" type="AudioStreamPlayer2D" parent="Sounds"]
 stream = ExtResource( 8 )
 
-[node name="Line2D" type="Line2D" parent="."]
-width = 4.0
+[node name="Node" type="Node" parent="."]
+
+[node name="Graph" parent="Node" instance=ExtResource( 10 )]
+grid_offset_px = 3
+search_rect = Rect2( 0, 0, 24, 24 )
+allow_diagonal = false
+draw_vertices = false
+
+[node name="Line2D" type="Line2D" parent="Node"]
+width = 1.0
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
 [connection signal="no_health" from="Health" to="." method="_on_Health_no_health"]
 

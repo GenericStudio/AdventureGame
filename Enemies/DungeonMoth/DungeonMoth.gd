@@ -20,6 +20,9 @@ onready var sprite = $Sprite;
 onready var PlayerChaseZone = $PlayerChaseZone;
 onready var PersonalSpace = $PersonalSpace;
 onready var Line = $Line2D;
+
+onready var Graph = get_node("Node/Graph");
+var path = [];
 #AI
 var state = IDLE;
 enum {
@@ -31,8 +34,10 @@ enum {
 
 func _physics_process(delta):
 	knockBack = knockBack.move_toward(Vector2.ZERO, acceleration*delta);
-	
 
+	var pathSize = path.size();
+
+	
 
 	match state:
 		IDLE:
@@ -80,6 +85,8 @@ func _on_Stats_no_health():
 
 
 func _on_PlayerChaseZone_player_seen():
+	if state != CHASE:
+		path = Graph.Pathfinder.get_shortest_path(Graph, global_position, destination);
 	state = CHASE;
 
 
